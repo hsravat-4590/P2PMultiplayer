@@ -28,6 +28,7 @@ SockWriter::SockWriter(const char *target, int port, Protocols protocol) {
 
     memcpy(hp->h_addr, &(server.sin_addr.s_addr), hp->h_length);
     server.sin_port = htons(mPort);
+    connect(sd, (const sockaddr *)&server, sizeof(server));
 }
 std::string SockWriter::SetFormat(std::string message) {
     return message; //WIP: This function hasn't been completed as a format hasnt been created yet
@@ -38,6 +39,6 @@ void SockWriter::BytesSend(unsigned char *messages) {
 }
 void SockWriter::MessageSend(std::string message) {
     message = SetFormat(message);
-    connect(sd, (const sockaddr *)&server, sizeof(server));
+
     ::send(sd, (char *)message.c_str(), strlen((char *)message.c_str()), 0);
 }
