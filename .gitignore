@@ -34,5 +34,9 @@
 # CMAKE directoires
 /cmake-build-debug
 
+#CMAKEFiles
+/CMakeFiles
+Makefile
+
 # .idea directories
 /.idea
