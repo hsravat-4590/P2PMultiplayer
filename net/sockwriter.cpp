@@ -35,7 +35,7 @@ std::string SockWriter::SetFormat(std::string message) {
 }
 
 void SockWriter::BytesSend(unsigned char *messages) {
-    ::send(sd, reinterpret_cast<const char *>(messages), sizeof(messages), 0);
+    ::send(sd, reinterpret_cast<const char *>(messages), strlen(reinterpret_cast<const char *>(messages)), 0);
 }
 void SockWriter::MessageSend(std::string message) {
     message = SetFormat(message);
