@@ -3,4 +3,7 @@ project(P2PMultiplayer)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_library(P2PMultiplayer SHARED library.cpp library.h peer.cpp peer.h keyexchange.cpp keyexchange.h)
+add_library(P2PMultiplayer SHARED library.cpp library.h
+        Blockchain/Block.cpp Blockchain/Block.h Blockchain/Blockchain.cpp Blockchain/Blockchain.h
+        crypto/sha256.cpp crypto/sha256.h
+        )
