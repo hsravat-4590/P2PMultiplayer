@@ -8,6 +8,7 @@ add_library(P2PMultiplayer SHARED library.cpp library.h
         crypto/sha256.cpp crypto/sha256.h
         net/Protocol.h net/sockwriter.cpp net/sockwriter.h
 )
+        net/SocketCommon.h)
 if(WIN32)
     target_link_libraries(P2PMultiplayer wsock32 ws2_32)
 endif()
