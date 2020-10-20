@@ -8,23 +8,16 @@ std::string mTarget = nullptr;
 int mPort = 0;
 Protocols mProtocol;
 const char *TargetHost;
+int sd;
+struct sockaddr_in server;
+struct in_addr ipv4addr;
+struct hostent *hp;
 
 SockWriter::SockWriter(const char *target, int port, Protocols protocol) {
     mTarget = target;
     mPort = port;
     mProtocol = protocol;
     TargetHost = target;
-}
-std::string SockWriter::SetFormat(std::string message) {
-    return message; //WIP: This function hasn't been completed as a format hasnt been created yet
-}
-void SockWriter::MessageSend(std::string message) {
-    message = SetFormat(message);
-    int sd,ret;
-    struct sockaddr_in server;
-    struct in_addr ipv4addr;
-    struct hostent *hp;
-
     if(mProtocol == Protocols::TCP) //TCP
         sd = socket(AF_INET, SOCK_STREAM, 0);
     if(mProtocol == Protocols::UDP) //UDP
@@ -35,7 +28,16 @@ void SockWriter::MessageSend(std::string message) {
 
     memcpy(hp->h_addr, &(server.sin_addr.s_addr), hp->h_length);
     server.sin_port = htons(mPort);
+}
+std::string SockWriter::SetFormat(std::string message) {
+    return message; //WIP: This function hasn't been completed as a format hasnt been created yet
+}
 
+void SockWriter::BytesSend(unsigned char *messages) {
+
+}
+void SockWriter::MessageSend(std::string message) {
+    message = SetFormat(message);
     connect(sd, (const sockaddr *)&server, sizeof(server));
     ::send(sd, (char *)message.c_str(), strlen((char *)message.c_str()), 0);
 }
