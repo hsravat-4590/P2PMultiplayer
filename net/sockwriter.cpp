@@ -16,7 +16,7 @@ SockWriter::SockWriter(const char *target, int port, Protocols protocol) {
     TargetHost = target;
 }
 std::string SockWriter::SetFormat(std::string message) {
-    return message;
+    return message; //WIP: This function hasn't been completed as a format hasnt been created yet
 }
 void SockWriter::MessageSend(std::string message) {
     message = SetFormat(message);
