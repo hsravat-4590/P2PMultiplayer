@@ -2,8 +2,8 @@
 // Created by Hanzalah Ravat on 20/10/2020.
 //
 //
-#ifndef P2PMULTIPLAYER_SOCKETCOMMON_H
-#define P2PMULTIPLAYER_SOCKETCOMMON_H
+#ifndef P2PMULTIPLAYER_SOCKET_H
+#define P2PMULTIPLAYER_SOCKET_H
 //Network related includes:
 #ifdef _WIN32
 #include <winsock2.h>
@@ -15,4 +15,6 @@
 #include <arpa/inet.h>
 #endif //WIN64 or Linux checks for the compiler
 #include "Protocol.h"
-#endif //P2PMULTIPLAYER_SOCKETCOMMON_H
+#endif //P2PMULTIPLAYER_SOCKET_H
+
+
