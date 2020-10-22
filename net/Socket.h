@@ -58,7 +58,7 @@ public:
         ::send(sockfd, (char *)message.c_str(), strlen((char *)message.c_str()), 0);
     }
 protected:
-    virtual void OnBytesRecv(unsigned char *bytes) = 0;
+    virtual void OnBytesRecv(char bytes[]) = 0;
     virtual void OnMessageRecieved(std::string textMsg) = 0;
     virtual void SetFormat(std::string message) = 0;
 private:
