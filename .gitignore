@@ -40,3 +40,5 @@ Makefile
 
 # .idea directories
 /.idea
+
+cmake_install.cmake
