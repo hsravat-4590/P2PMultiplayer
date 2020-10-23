@@ -9,14 +9,12 @@ set(lib_SOURCES library.cpp library.h
         ext/TinyThread++-1.1/fast_mutex.h ext/TinyThread++-1.1/tinythread.cpp ext/TinyThread++-1.1/tinythread.h
         net/Protocol.h
         net/Socket.h
-        platform/common/Runnable.h)
+        )
 if(WIN32)
-    set(lib_SOURCES ${lib_SOURCES}
-            platform/win32/WinThread.cpp platform/win32/WinThread.h)
+# Include sources which should only be included in Windows
 endif()
 if(POSIX)
-    set(lib_SOURCES ${lib_SOURCES}
-            platform/common/Thread.h platform/posix/PosixThread.cpp platform/posix/PosixThread.h platform/win32/WinThread.cpp platform/win32/WinThread.h)
+# Include sources which should only be included in POSIX-type Operating Systems
 endif()
 
 add_library(P2PMultiplayer SHARED ${lib_SOURCES})
