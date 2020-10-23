@@ -18,11 +18,13 @@
 #include "Protocol.h"
 //Other headers
 #include <string>
+#include <thread>
 //Constants
 #define MAX 80
 #define SA struct sockaddr
 #endif //P2PMULTIPLAYER_SOCKET_H
 //Class to maintain a socket connection between two nodes on the network
+
 class Socket{
 public:
     Socket(struct sockaddr_in servaddr, const int port, Protocols protocol){
@@ -66,11 +68,15 @@ private:
     int PORT, sockfd,connfd,len;
     struct sockaddr_in servaddr, cli;
     char buffer[MAX];
+    std::thread ListenerThread;
     void StartListener(){
         threadRunning = true;
-        ListenerTask();
+        ListenerThread(ListenerTask);
+        ListenerThread.join();
+        printf("ListenerThread has exited \n");
     };
-    void StopListener(){threadRunning = false;};
+    void StopListener(){threadRunning = false;}
+
     void ListenerTask(){
         while(threadRunning) {
             memset(buffer,0, MAX);
@@ -80,4 +86,5 @@ private:
             memset(buffer,0,MAX);
         }
     }
+
 };
