@@ -66,7 +66,18 @@ private:
     int PORT, sockfd,connfd,len;
     struct sockaddr_in servaddr, cli;
     char buffer[MAX];
-    void StartListener();
-    void StopListener();
-    void ListenerTask(){}
+    void StartListener(){
+        threadRunning = true;
+        ListenerTask();
+    };
+    void StopListener(){threadRunning = false;};
+    void ListenerTask(){
+        while(threadRunning) {
+            memset(buffer,0, MAX);
+            // read the message from client and copy it in buffer
+            ::read(sockfd, buffer, sizeof(buffer));
+            OnBytesRecv(buffer);
+            memset(buffer,0,MAX);
+        }
+    }
 };
